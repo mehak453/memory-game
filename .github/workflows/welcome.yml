@@ -7,15 +7,18 @@ on:
 jobs:
   welcome:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.author_association == 'FIRST_TIMER' || github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
+    if: >
+      github.event.pull_request.author_association == 'FIRST_TIMER' ||
+      github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
     steps:
       - name: Greet the contributor
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            await github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: "🎉 Welcome to the project! Thank you for your first contribution. We’re happy to have you here! 🚀"
-            })
+            });
