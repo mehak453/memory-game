@@ -21,3 +21,4 @@ This is a simple and fun memory game where players need to remember and repeat a
 - index.html — The main HTML file for the game.
 - style.css — The CSS file to style the game interface.
 - script.js — The JavaScript file containing the game logic.
+Hello.
