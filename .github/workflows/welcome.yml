@@ -13,10 +13,9 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const { context } = require('@actions/github');
-            github.issues.createComment({
+            github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: "🎉 Welcome to the project! Thank you for your first contribution. We’re happy to have you here! 🚀"
-            });
+            })
